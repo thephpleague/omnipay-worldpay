@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Omnipay\Billing\WorldPay;
+namespace Omnipay\WorldPay;
 
 use Omnipay\GatewayTestCase;
 
@@ -32,7 +32,7 @@ class GatewayTest extends GatewayTestCase
     {
         $response = $this->gateway->purchase($this->options);
 
-        $this->assertInstanceOf('\Omnipay\RedirectResponse', $response);
+        $this->assertInstanceOf('\Omnipay\Common\RedirectResponse', $response);
         $this->assertTrue($response->isRedirect());
         $this->assertContains('https://secure.worldpay.com/wcc/purchase?', $response->getRedirectUrl());
     }
@@ -51,7 +51,7 @@ class GatewayTest extends GatewayTestCase
     }
 
     /**
-     * @expectedException \Omnipay\Exception\InvalidResponseException
+     * @expectedException \Omnipay\Common\Exception\InvalidResponseException
      */
     public function testCompletePurchaseInvalidCallbackPassword()
     {
