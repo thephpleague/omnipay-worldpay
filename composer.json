@@ -23,7 +23,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Omnipay\\WorldPay\\" : "src/" }
+        "psr-4": { "Omnipay\\WorldPay\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
