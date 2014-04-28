@@ -25,6 +25,7 @@ class Gateway extends AbstractGateway
             'secretWord' => '',
             'callbackPassword' => '',
             'testMode' => false,
+            'merchantCode' => '',
         );
     }
 
@@ -36,6 +37,16 @@ class Gateway extends AbstractGateway
     public function setInstallationId($value)
     {
         return $this->setParameter('installationId', $value);
+    }
+
+    public function getMerchantCode()
+    {
+        return $this->getParameter('merchantCode');
+    }
+
+    public function setMerchantCode($value)
+    {
+        return $this->setParameter('merchantCode', $value);
     }
 
     public function getSecretWord()
