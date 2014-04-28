@@ -58,10 +58,7 @@ class PurchaseRequest extends AbstractRequest
 
         $data = array();
         $data['instId'] = $this->getInstallationId();
-        if ($this->getMerchantCode()) {
-            // Merchant code is optional so don't need to include it if not specified
-            $data['accId1'] = $this->getMerchantCode();
-        }
+        $data['accId1'] = $this->getMerchantCode();
         $data['cartId'] = $this->getTransactionId();
         $data['desc'] = $this->getDescription();
         $data['amount'] = $this->getAmount();
