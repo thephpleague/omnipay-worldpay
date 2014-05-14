@@ -22,6 +22,16 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('installationId', $value);
     }
 
+    public function getAccountId()
+    {
+        return $this->getParameter('accountId');
+    }
+
+    public function setAccountId($value)
+    {
+        return $this->setParameter('accountId', $value);
+    }
+
     public function getSecretWord()
     {
         return $this->getParameter('secretWord');
@@ -48,6 +58,7 @@ class PurchaseRequest extends AbstractRequest
 
         $data = array();
         $data['instId'] = $this->getInstallationId();
+        $data['accId1'] = $this->getAccountId();
         $data['cartId'] = $this->getTransactionId();
         $data['desc'] = $this->getDescription();
         $data['amount'] = $this->getAmount();

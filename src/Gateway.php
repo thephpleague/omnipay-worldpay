@@ -22,6 +22,7 @@ class Gateway extends AbstractGateway
     {
         return array(
             'installationId' => '',
+            'accountId' => '',
             'secretWord' => '',
             'callbackPassword' => '',
             'testMode' => false,
@@ -36,6 +37,16 @@ class Gateway extends AbstractGateway
     public function setInstallationId($value)
     {
         return $this->setParameter('installationId', $value);
+    }
+
+    public function getAccountId()
+    {
+        return $this->getParameter('accountId');
+    }
+
+    public function setAccountId($value)
+    {
+        return $this->setParameter('accountId', $value);
     }
 
     public function getSecretWord()
