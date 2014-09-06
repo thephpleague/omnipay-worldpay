@@ -10,7 +10,7 @@
         "payment",
         "worldpay"
     ],
-    "homepage": "https://github.com/omnipay/worldpay",
+    "homepage": "https://github.com/thephpleague/omnipay-worldpay",
     "license": "MIT",
     "authors": [
         {
@@ -19,7 +19,7 @@
         },
         {
             "name": "Omnipay Contributors",
-            "homepage": "https://github.com/omnipay/worldpay/contributors"
+            "homepage": "https://github.com/thephpleague/omnipay-worldpay/contributors"
         }
     ],
     "autoload": {
