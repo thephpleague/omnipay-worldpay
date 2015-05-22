@@ -18,9 +18,28 @@ class CompletePurchaseResponseTest extends TestCase
         );
 
         $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isCancelled());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('abc123', $response->getTransactionReference());
         $this->assertSame('Success Message', $response->getMessage());
+    }
+
+    public function testCompletePurchaseCancel()
+    {
+        $response = new CompletePurchaseresponse(
+            $this->getMockRequest(),
+            array(
+                'transStatus' => 'C',
+                'transId' => null,
+                'rawAuthMessage' => 'Declined'
+            )
+        );
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertTrue($response->isCancelled());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame('Declined', $response->getMessage());
     }
 
     public function testCompletePurchaseFailure()
@@ -35,6 +54,7 @@ class CompletePurchaseResponseTest extends TestCase
         );
 
         $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isCancelled());
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getTransactionReference());
         $this->assertSame('Declined', $response->getMessage());
