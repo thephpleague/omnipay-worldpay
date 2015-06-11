@@ -52,6 +52,46 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('callbackPassword', $value);
     }
 
+    public function getPaymentType()
+    {
+        return $this->getParameter('paymentType');
+    }
+
+    public function setPaymentType($value)
+    {
+        return $this->setParameter('paymentType', $value);
+    }
+
+    public function getNoLanguageMenu()
+    {
+        return $this->getParameter('noLanguageMenu');
+    }
+
+    public function setNoLanguageMenu($value)
+    {
+        return $this->setParameter('noLanguageMenu', $value);
+    }
+
+    public function getFixContact()
+    {
+        return $this->getParameter('fixContact');
+    }
+
+    public function setFixContact($value)
+    {
+        return $this->setParameter('fixContact', $value);
+    }
+
+    public function getHideContact()
+    {
+        return $this->getParameter('hideContact');
+    }
+
+    public function setHideContact($value)
+    {
+        return $this->setParameter('hideContact', $value);
+    }
+
     public function getData()
     {
         $this->validate('amount', 'returnUrl');
@@ -65,6 +105,10 @@ class PurchaseRequest extends AbstractRequest
         $data['currency'] = $this->getCurrency();
         $data['testMode'] = $this->getTestMode() ? 100 : 0;
         $data['MC_callback'] = $this->getReturnUrl();
+        $data['paymentType'] = $this -> getPaymentType();
+        $data['noLanguageMenu'] = $this -> getNoLanguageMenu();
+        $data['fixContact'] = $this -> getFixContact();
+        $data['hideContact'] = $this -> getHideContact();
 
         if ($this->getCard()) {
             $data['name'] = $this->getCard()->getName();

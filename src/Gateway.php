@@ -26,6 +26,9 @@ class Gateway extends AbstractGateway
             'secretWord' => '',
             'callbackPassword' => '',
             'testMode' => false,
+            'noLanguageMenu' => false,
+            'fixContact' => false,
+            'hideContact' => false,
         );
     }
 
@@ -67,6 +70,36 @@ class Gateway extends AbstractGateway
     public function setCallbackPassword($value)
     {
         return $this->setParameter('callbackPassword', $value);
+    }
+
+    public function getNoLanguageMenu()
+    {
+        return $this->getParameter('noLanguageMenu');
+    }
+
+    public function setNoLanguageMenu($value)
+    {
+        return $this->setParameter('noLanguageMenu', $value);
+    }
+
+    public function getFixContact()
+    {
+        return $this->getParameter('fixContact');
+    }
+
+    public function setFixContact($value)
+    {
+        return $this->setParameter('fixContact', $value);
+    }
+
+    public function getHideContact()
+    {
+        return $this->getParameter('hideContact');
+    }
+
+    public function setHideContact($value)
+    {
+        return $this->setParameter('hideContact', $value);
     }
 
     public function purchase(array $parameters = array())
