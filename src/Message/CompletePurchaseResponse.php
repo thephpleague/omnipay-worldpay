@@ -37,12 +37,13 @@ class CompletePurchaseResponse extends AbstractResponse
      * method currently available.
      *
      * @param string $returnUrl The URL to forward the customer to.
-     * @param string $message   Optional message to display to the customer before they are redirected.
+     * @param string|null $message   Optional message to display to the customer before they are redirected.
      */
-    public function confirm(
-        $returnUrl,
-        $message = 'Thank you, your transaction has been processed. You are being redirected...'
-    ) {
+    public function confirm($returnUrl, $message = null)
+    {
+        if (empty($message)) {
+            $message = 'Thank you, your transaction has been processed. You are being redirected...';
+        }
         echo '<meta http-equiv="refresh" content="2;url='.$returnUrl.'" /><p>'.$message.'</p>';
         exit;
     }
