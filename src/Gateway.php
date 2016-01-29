@@ -72,6 +72,11 @@ class Gateway extends AbstractGateway
         return $this->setParameter('callbackPassword', $value);
     }
 
+    /**
+     * If true, hides WorldPay's language selection menu.
+     *
+     * @param boolean
+     */
     public function getNoLanguageMenu()
     {
         return $this->getParameter('noLanguageMenu');
@@ -82,6 +87,11 @@ class Gateway extends AbstractGateway
         return $this->setParameter('noLanguageMenu', $value);
     }
 
+    /**
+     * If true, prevents editing of address details by user.
+     *
+     * @param boolean
+     */
     public function getFixContact()
     {
         return $this->getParameter('fixContact');
@@ -92,6 +102,11 @@ class Gateway extends AbstractGateway
         return $this->setParameter('fixContact', $value);
     }
 
+    /**
+     * If true, hides address details from user.
+     *
+     * @param boolean
+     */
     public function getHideContact()
     {
         return $this->getParameter('hideContact');

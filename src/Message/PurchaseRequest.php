@@ -52,6 +52,12 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('callbackPassword', $value);
     }
 
+    /**
+     * Pre-selects the card type being used and bypasses the card type selection screen.
+     * Must match one of: https://support.worldpay.com/support/kb/bg/customisingadvanced/custa9102.html
+     *
+     * @param string
+     */
     public function getPaymentType()
     {
         return $this->getParameter('paymentType');
@@ -62,6 +68,11 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('paymentType', $value);
     }
 
+    /**
+     * If true, hides WorldPay's language selection menu.
+     *
+     * @param boolean
+     */
     public function getNoLanguageMenu()
     {
         return $this->getParameter('noLanguageMenu');
@@ -72,6 +83,11 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('noLanguageMenu', $value);
     }
 
+    /**
+     * If true, prevents editing of address details by user.
+     *
+     * @param boolean
+     */
     public function getFixContact()
     {
         return $this->getParameter('fixContact');
@@ -82,6 +98,11 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('fixContact', $value);
     }
 
+    /**
+     * If true, hides address details from user.
+     *
+     * @param boolean
+     */
     public function getHideContact()
     {
         return $this->getParameter('hideContact');
