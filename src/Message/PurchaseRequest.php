@@ -115,7 +115,13 @@ class PurchaseRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('amount', 'returnUrl');
+        $this->validate('amount');
+
+        // Either the nodifyUrl or the returnUrl can be provided.
+        // The returnUrl is deprecated, as strictly this is a notifyUrl.
+        if (!$this->getNotifyUrl()) {
+            $this->validate('returnUrl');
+        }
 
         $data = array();
         $data['instId'] = $this->getInstallationId();
@@ -125,7 +131,7 @@ class PurchaseRequest extends AbstractRequest
         $data['amount'] = $this->getAmount();
         $data['currency'] = $this->getCurrency();
         $data['testMode'] = $this->getTestMode() ? 100 : 0;
-        $data['MC_callback'] = $this->getReturnUrl();
+        $data['MC_callback'] = $this->getNotifyUrl() ?: $this->getReturnUrl();
         $data['paymentType'] = $this -> getPaymentType();
         $data['noLanguageMenu'] = $this -> getNoLanguageMenu();
         $data['fixContact'] = $this -> getFixContact();
