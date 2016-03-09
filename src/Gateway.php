@@ -3,8 +3,6 @@
 namespace Omnipay\WorldPay;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\WorldPay\Message\CompletePurchaseRequest;
-use Omnipay\WorldPay\Message\PurchaseRequest;
 
 /**
  * WorldPay Gateway
