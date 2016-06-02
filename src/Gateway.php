@@ -27,6 +27,7 @@ class Gateway extends AbstractGateway
             'noLanguageMenu' => false,
             'fixContact' => false,
             'hideContact' => false,
+            'hideCurrency' => false
         );
     }
 
@@ -113,6 +114,21 @@ class Gateway extends AbstractGateway
     public function setHideContact($value)
     {
         return $this->setParameter('hideContact', $value);
+    }
+
+    /**
+     * If true, hides currency options from user.
+     *
+     * @param boolean
+     */
+    public function getHideCurrency()
+    {
+        return $this->getParameter('hideCurrency');
+    }
+
+    public function setHideCurrency($value)
+    {
+        return $this->setParameter('hideCurrency', $value);
     }
 
     public function purchase(array $parameters = array())
