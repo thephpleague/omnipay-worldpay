@@ -113,6 +113,21 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('hideContact', $value);
     }
 
+    /**
+     * If true, hides currency options from user.
+     *
+     * @param boolean
+     */
+    public function getHideCurrency()
+    {
+        return $this->getParameter('hideCurrency');
+    }
+
+    public function setHideCurrency($value)
+    {
+        return $this->setParameter('hideCurrency', $value);
+    }
+
     public function getData()
     {
         $this->validate('amount');
@@ -136,6 +151,7 @@ class PurchaseRequest extends AbstractRequest
         $data['noLanguageMenu'] = $this -> getNoLanguageMenu();
         $data['fixContact'] = $this -> getFixContact();
         $data['hideContact'] = $this -> getHideContact();
+        $data['hideCurrency'] = $this -> getHideCurrency();
 
         if ($this->getCard()) {
             $data['name'] = $this->getCard()->getName();
