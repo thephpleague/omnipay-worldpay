@@ -28,6 +28,8 @@ class PurchaseRequestTest extends TestCase
                 'amount' => '12.00',
                 'currency' => 'GBP',
                 'returnUrl' => 'https://example.com/return',
+                'signatureFields' => 'instId:amount:currency',
+                'secretWord' => 'such-secret-wow'
             )
         );
 
@@ -41,6 +43,9 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('GBP', $data['currency']);
         $this->assertSame(0, $data['testMode']);
         $this->assertSame('https://example.com/return', $data['MC_callback']);
+        $this->assertSame('instId:amount:currency', $data['signatureFields']);
+        $this->assertInternalType('string', $data['signature']);
+        $this->assertEquals(32, strlen($data['signature']));
     }
 
     public function testGetDataTestMode()

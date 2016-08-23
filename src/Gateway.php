@@ -27,8 +27,19 @@ class Gateway extends AbstractGateway
             'noLanguageMenu' => false,
             'fixContact' => false,
             'hideContact' => false,
-            'hideCurrency' => false
+            'hideCurrency' => false,
+            'signatureFields' => 'instId:amount:currency:cartId',
         );
+    }
+
+    public function getSignatureFields()
+    {
+        return $this->getParameter('signatureFields');
+    }
+
+    public function setSignatureFields($value)
+    {
+        return $this->setParameter('signatureFields', $value);
     }
 
     public function getInstallationId()

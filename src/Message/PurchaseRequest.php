@@ -11,11 +11,15 @@ class PurchaseRequest extends AbstractRequest
 {
     protected $liveEndpoint = 'https://secure.worldpay.com/wcc/purchase';
     protected $testEndpoint = 'https://secure-test.worldpay.com/wcc/purchase';
-    protected $signatureFields = 'instId:amount:currency:cartId';
+
+    public function setSignatureFields($value)
+    {
+        return $this->setParameter('signatureFields', $value);
+    }
 
     public function getSignatureFields()
     {
-        return $this->getParameter('signatureFields') ?: $this->signatureFields;
+        return $this->getParameter('signatureFields');
     }
 
     public function getInstallationId()
