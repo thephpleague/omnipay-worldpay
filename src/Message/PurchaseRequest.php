@@ -12,6 +12,16 @@ class PurchaseRequest extends AbstractRequest
     protected $liveEndpoint = 'https://secure.worldpay.com/wcc/purchase';
     protected $testEndpoint = 'https://secure-test.worldpay.com/wcc/purchase';
 
+    public function setSignatureFields($value)
+    {
+        return $this->setParameter('signatureFields', $value);
+    }
+
+    public function getSignatureFields()
+    {
+        return $this->getParameter('signatureFields');
+    }
+
     public function getInstallationId()
     {
         return $this->getParameter('installationId');
@@ -166,7 +176,7 @@ class PurchaseRequest extends AbstractRequest
         }
 
         if ($this->getSecretWord()) {
-            $data['signatureFields'] = 'instId:amount:currency:cartId';
+            $data['signatureFields'] = $this->getSignatureFields();
             $signature_data = array($this->getSecretWord(),
                 $data['instId'], $data['amount'], $data['currency'], $data['cartId']);
             $data['signature'] = md5(implode(':', $signature_data));
