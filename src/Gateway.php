@@ -29,7 +29,18 @@ class Gateway extends AbstractGateway
             'hideContact' => false,
             'hideCurrency' => false,
             'signatureFields' => 'instId:amount:currency:cartId',
+            'authMode' => ''
         );
+    }
+
+    public function setAuthMode($value)
+    {
+        return $this->setParameter('authMode', $value);
+    }
+
+    public function getAuthMode()
+    {
+        return $this->getParameter('authMode');
     }
 
     public function getSignatureFields()
