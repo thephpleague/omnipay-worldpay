@@ -29,7 +29,8 @@ class PurchaseRequestTest extends TestCase
                 'currency' => 'GBP',
                 'returnUrl' => 'https://example.com/return',
                 'signatureFields' => 'instId:amount:currency',
-                'secretWord' => 'such-secret-wow'
+                'secretWord' => 'such-secret-wow',
+                'authMode' => 'A'
             )
         );
 
@@ -41,6 +42,7 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('food', $data['desc']);
         $this->assertSame('12.00', $data['amount']);
         $this->assertSame('GBP', $data['currency']);
+        $this->assertSame('A', $data['authMode']);
         $this->assertSame(0, $data['testMode']);
         $this->assertSame('https://example.com/return', $data['MC_callback']);
         $this->assertSame('instId:amount:currency', $data['signatureFields']);
