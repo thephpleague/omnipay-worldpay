@@ -29,7 +29,7 @@ class Gateway extends AbstractGateway
             'hideContact' => false,
             'hideCurrency' => false,
             'signatureFields' => 'instId:amount:currency:cartId',
-            'authMode' => ''
+            'authMode' => 'A'
         );
     }
 
