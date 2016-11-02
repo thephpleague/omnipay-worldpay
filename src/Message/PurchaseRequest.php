@@ -178,8 +178,11 @@ class PurchaseRequest extends AbstractRequest
 
         if ($this->getSecretWord()) {
             $data['signatureFields'] = $this->getSignatureFields();
-            $signature_data = array($this->getSecretWord(),
-                $data['instId'], $data['amount'], $data['currency'], $data['cartId']);
+            $signature_data = array($this->getSecretWord());
+            foreach (explode(':', $data['signatureFields']) as $parameterName) {
+                $signature_data[] = $data[$parameterName];
+            }
+
             $data['signature'] = md5(implode(':', $signature_data));
         }
 
