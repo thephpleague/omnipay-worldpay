@@ -12,6 +12,16 @@ class PurchaseRequest extends AbstractRequest
     protected $liveEndpoint = 'https://secure.worldpay.com/wcc/purchase';
     protected $testEndpoint = 'https://secure-test.worldpay.com/wcc/purchase';
 
+    public function setAuthMode($value)
+    {
+        return $this->setParameter('authMode', $value);
+    }
+
+    public function getAuthMode()
+    {
+        return $this->getParameter('authMode');
+    }
+
     public function setSignatureFields($value)
     {
         return $this->setParameter('signatureFields', $value);
@@ -163,6 +173,7 @@ class PurchaseRequest extends AbstractRequest
         $data['fixContact'] = $this -> getFixContact();
         $data['hideContact'] = $this -> getHideContact();
         $data['hideCurrency'] = $this -> getHideCurrency();
+        $data['authMode'] = $this->getAuthMode();
 
         if ($this->getCard()) {
             $data['name'] = $this->getCard()->getName();
