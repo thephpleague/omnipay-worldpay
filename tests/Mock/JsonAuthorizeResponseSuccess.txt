@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Date: Sat, 13 May 2017 00:20:08 GMT
+requestId: 3c644d2e-082c-430e-a209-fce4c253e49f
+Server: Windows NT 3.x
+X-Content-Type-Options: nosniff
+Content-Length: 774
+Connection: Close
+
+{"orderCode":"e0bf69e8-8c98-4e01-893b-d040fa41dd9b","token":"TEST_RU_7a22d2ec-6725-48b7-b8e7-243f03914b27","orderDescription":"Order #4","amount":500,"currencyCode":"GBP","paymentStatus":"AUTHORIZED","paymentResponse":{"type":"ObfuscatedCard","name":"Luke Holder","expiryMonth":1,"expiryYear":2018,"cardType":"MASTERCARD_CREDIT","maskedCardNumber":"**** **** **** 4444","cardSchemeType":"consumer","cardSchemeName":"MCI CREDIT","cardIssuer":"LLOYDS BANK PLC","countryCode":"GB","cardClass":"credit","cardProductTypeDescNonContactless":"MasterCard Business","cardProductTypeDescContactless":"CL MasterCard Bus","prepaid":"unknown"},"environment":"TEST","riskScore":{"value":"1"},"resultCodes":{"avsResultCode":"NOT_SUPPLIED_BY_SHOPPER","cvcResultCode":"APPROVED"}}
