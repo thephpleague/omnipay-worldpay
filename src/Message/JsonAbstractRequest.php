@@ -6,7 +6,6 @@ use Omnipay\Common\Message\AbstractRequest;
 
 abstract class JsonAbstractRequest extends AbstractRequest
 {
-
     protected $endpoint = 'https://api.worldpay.com/v1';
 
     public function getHttpMethod()
@@ -47,7 +46,6 @@ abstract class JsonAbstractRequest extends AbstractRequest
 
     public function sendRequest($data)
     {
-        // Stripe only accepts TLS >= v1.2, so make sure Curl is told
         $config = $this->httpClient->getConfig();
         $curlOptions = $config->get('curl.options');
         $curlOptions[CURLOPT_SSLVERSION] = 6;
@@ -77,5 +75,26 @@ abstract class JsonAbstractRequest extends AbstractRequest
             ->send();
 
         return $httpResponse;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseClassName()
+    {
+        return '\Omnipay\WorldPay\Message\JsonResponse';
+    }
+
+    /**
+     * @param mixed $data
+     *
+     * @return JsonResponse
+     */
+    public function sendData($data)
+    {
+        $httpResponse = $this->sendRequest($data);
+
+        $responseClass = $this->getResponseClassName();
+        return $this->response = new $responseClass($this, $httpResponse);
     }
 }

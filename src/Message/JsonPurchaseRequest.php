@@ -62,22 +62,18 @@ class JsonPurchaseRequest extends JsonAbstractRequest
     }
 
     /**
-     * @param mixed $data
-     *
-     * @return JsonResponse
-     */
-    public function sendData($data)
-    {
-        $httpResponse = $this->sendRequest($data);
-
-        return $this->response = new JsonResponse($this, $httpResponse);
-    }
-
-    /**
      * @return string
      */
     public function getEndpoint()
     {
         return $this->endpoint.'/orders';
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseClassName()
+    {
+        return '\Omnipay\WorldPay\Message\JsonResponse';
     }
 }

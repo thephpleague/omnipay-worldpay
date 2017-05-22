@@ -31,6 +31,9 @@ class JsonResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
+        // Some requests have an empty body (no data) but are still a success.
+        // For example see tests/Mock/JsonRefundReponseSuccess.txt
+
         $code = $this->response->getStatusCode();
         return $code == 200;
     }

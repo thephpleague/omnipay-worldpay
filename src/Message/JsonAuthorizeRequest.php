@@ -15,4 +15,12 @@ class JsonAuthorizeRequest extends JsonPurchaseRequest
 
         return $data;
     }
+
+    /**
+     * @return string
+     */
+    public function getResponseClassName()
+    {
+        return '\Omnipay\WorldPay\Message\JsonAuthorizeResponse';
+    }
 }

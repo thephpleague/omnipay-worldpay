@@ -19,13 +19,6 @@ class JsonRefundRequest extends JsonAbstractRequest
         return $data;
     }
 
-    public function sendData($data)
-    {
-        $httpResponse = $this->sendRequest($data);
-
-        return $this->response = new JsonResponse($this, $httpResponse);
-    }
-
     /**
      * @return string
      */
