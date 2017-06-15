@@ -1,0 +1,10 @@
+HTTP/1.1 400 Bad Request
+Content-Type: application/json;charset=UTF-8
+Date: Sun, 21 May 2017 23:45:31 GMT
+requestId: c6d3c41f-5cdc-4658-9fdc-fc761fd98665
+Server: Windows NT 3.x
+X-Content-Type-Options: nosniff
+Content-Length: 348
+Connection: Close
+
+{"httpStatusCode":400,"customCode":"BAD_REQUEST","message":"TEST Order: e0bf69e8-8c98-4e01-893b-d040fa41dd9b cannot be refunded while in status: REFUNDED - try again later.","description":"Some of request parameters are invalid, please check your request. For more information please refer to Json schema.","errorHelpUrl":null,"originalRequest":""}
