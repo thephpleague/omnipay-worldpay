@@ -14,8 +14,18 @@ class JsonAuthorizeRequestTest extends TestCase
                 'amount' => '12.00',
                 'currency' => 'USD',
                 'token' => 'TEST_RU_7a22d2ec-6725-48b7-b8e7-243f03914b27',
-                'description' => 'Order #4'
-            )
+                'description' => 'Order #4',
+                'card' => array(
+                    'name' => "Luke Holder",
+                    'address1' => '123 Somewhere St',
+                    'address2' => 'Suburbia',
+                    'city' => 'Little Town',
+                    'postcode' => '1234',
+                    'state' => 'CA',
+                    'country' => 'US',
+                    'phone' => '1-234-567-8900'
+                )
+           )
         );
     }
 
@@ -36,7 +46,6 @@ class JsonAuthorizeRequestTest extends TestCase
         $this->assertSame('xyz', $data['token']);
     }
 
-
     public function testSendSuccess()
     {
         $this->setMockHttpResponse('JsonAuthorizeResponseSuccess.txt');
@@ -48,5 +57,4 @@ class JsonAuthorizeRequestTest extends TestCase
         $this->assertSame('TEST_RU_7a22d2ec-6725-48b7-b8e7-243f03914b27', $response->getCardReference());
         $this->assertEquals('AUTHORIZED', $response->getMessage());
     }
-
 }

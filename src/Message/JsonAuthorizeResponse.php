@@ -2,29 +2,13 @@
 
 namespace Omnipay\WorldPay\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
-use Omnipay\Common\Message\RequestInterface;
-
 /**
- * WorldPay Purchase Request
+ * WorldPay Authorize Request
  */
-class JsonAuthorizeResponse extends JsonResponse
+class JsonAuthorizeResponse extends JsonPurchaseResponse
 {
-
     /**
-     * Is the response successful?
-     *
-     * @return bool
+     * @var string  Payment status that determines success
      */
-    public function isSuccessful()
-    {
-        $isHttpSuccess = parent::isSuccessful();
-        $isPurchaseSuccess = false;
-
-        if (isset($this->data['paymentStatus']) && $this->data['paymentStatus'] == 'AUTHORIZED') {
-            $isPurchaseSuccess = true;
-        }
-
-        return ($isHttpSuccess && $isPurchaseSuccess);
-    }
+    protected $successfulPaymentStatus = 'AUTHORIZED';
 }

@@ -1,0 +1,10 @@
+HTTP/1.1 400 Bad Request
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 19 May 2017 16:48:34 GMT
+requestId: 28392eaa-8050-4a17-a011-6125f640ae43
+Server: Windows NT 3.x
+X-Content-Type-Options: nosniff
+Content-Length: 417
+Connection: Close
+
+{"httpStatusCode":400,"customCode":"BAD_REQUEST","message":"This card is not accepted for Test transactions","description":"Some of request parameters are invalid, please check your request. For more information please refer to Json schema.","errorHelpUrl":null,"originalRequest":"{'token':'TEST_RU_89584207-0e47-44a2-ad01-821cb0f2bcb4','orderDescription':'your-order-description','amount':500,'currencyCode':'GBP'}"}
