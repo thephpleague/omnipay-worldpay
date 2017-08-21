@@ -50,7 +50,6 @@ class JsonPurchaseRequest extends JsonAbstractRequest
             $data['deliveryAddress']['telephoneNumber'] = $card->getBillingPhone();
 
             $data['shopperEmailAddress'] = $card->getEmail();
-
         }
 
         $data['shopperIpAddress'] = $this->getClientIp();
