@@ -7,7 +7,11 @@ namespace Omnipay\WorldPay\Message;
  */
 class JsonRefundRequest extends JsonAbstractRequest
 {
-
+    /**
+     * Set up the refund-specific data
+     *
+     * @return mixed
+     */
     public function getData()
     {
         $this->validate('amount');

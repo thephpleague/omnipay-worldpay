@@ -2,6 +2,7 @@
 
 namespace Omnipay\WorldPay\Message;
 
+use Guzzle\Http\Message\Response as HttpResponse;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
@@ -10,13 +11,16 @@ use Omnipay\Common\Message\RequestInterface;
  */
 class JsonResponse extends AbstractResponse
 {
+    /**
+     * @var HttpResponse  HTTP response object
+     */
     public $response;
 
     /**
      * Constructor
      *
-     * @param RequestInterface $request the initiating request.
-     * @param mixed $response
+     * @param RequestInterface $request   The initiating request
+     * @param HttpResponse     $response  HTTP response object
      */
     public function __construct(RequestInterface $request, $response)
     {
@@ -27,33 +31,29 @@ class JsonResponse extends AbstractResponse
     /**
      * Is the response successful?
      *
+     * Based on HTTP status code, as some requests have an empty body (no data) but are still a success.
+     * For example see tests/Mock/JsonRefundResponseSuccess.txt
+     *
      * @return bool
      */
     public function isSuccessful()
     {
-        // Some requests have an empty body (no data) but are still a success.
-        // For example see tests/Mock/JsonRefundReponseSuccess.txt
-
         $code = $this->response->getStatusCode();
         return $code == 200;
     }
 
     /**
-     * @return bool|null
+     * @return string|null
      */
     public function getMessage()
     {
-        if (!$this->isSuccessful()) {
+        if (!$this->isSuccessful() && isset($this->data['message'])) {
             return $this->data['message'];
-        }
-
-        if (isset($this->data['paymentStatus'])) {
-            return $this->data['paymentStatus'];
         }
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function getCode()
     {

@@ -8,7 +8,9 @@ namespace Omnipay\WorldPay\Message;
 class JsonPurchaseRequest extends JsonAbstractRequest
 {
     /**
-     * @return array
+     * Set up the base data for a purchase request
+     *
+     * @return mixed[]
      */
     public function getData()
     {
@@ -73,6 +75,6 @@ class JsonPurchaseRequest extends JsonAbstractRequest
      */
     public function getResponseClassName()
     {
-        return '\Omnipay\WorldPay\Message\JsonResponse';
+        return '\Omnipay\WorldPay\Message\JsonPurchaseResponse';
     }
 }
