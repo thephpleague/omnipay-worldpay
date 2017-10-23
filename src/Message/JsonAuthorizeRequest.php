@@ -7,6 +7,11 @@ namespace Omnipay\WorldPay\Message;
  */
 class JsonAuthorizeRequest extends JsonPurchaseRequest
 {
+    /**
+     * Set up the authorize-specific data
+     *
+     * @return mixed
+     */
     public function getData()
     {
         $data = parent::getData();
