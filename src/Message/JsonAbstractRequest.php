@@ -4,6 +4,7 @@ namespace Omnipay\WorldPay\Message;
 
 use Guzzle\Http\Message\Response as HttpResponse;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\ResponseInterface;
 
 abstract class JsonAbstractRequest extends AbstractRequest
 {
@@ -94,37 +95,22 @@ abstract class JsonAbstractRequest extends AbstractRequest
      *
      * @param mixed $data  The data to encode and send to the API endpoint
      *
-     * @return HttpResponse  HTTP response object
+     * @return \Psr\Http\Message\ResponseInterface HTTP response object
      */
     public function sendRequest($data)
     {
-        $config = $this->httpClient->getConfig();
-        $curlOptions = $config->get('curl.options');
-        $curlOptions[CURLOPT_SSLVERSION] = 6;
-        $config->set('curl.options', $curlOptions);
-        $this->httpClient->setConfig($config);
-
-        // don't throw exceptions for 4xx errors
-        $this->httpClient->getEventDispatcher()->addListener(
-            'request.error',
-            function ($event) {
-                if ($event['response']->isClientError()) {
-                    $event->stopPropagation();
-                }
-            }
-        );
-
         $httpRequest = $this->httpClient->createRequest(
             $this->getHttpMethod(),
             $this->getEndpoint(),
-            null,
+            [],
             json_encode($data)
         );
 
-        $httpResponse = $httpRequest
-            ->setHeader('Authorization', $this->getServiceKey())
-            ->setHeader('Content-type', 'application/json')
-            ->send();
+        $httpRequest = $httpRequest
+            ->withHeader('Authorization', $this->getServiceKey())
+            ->withHeader('Content-type', 'application/json');
+
+        $httpResponse = $this->httpClient->sendRequest($httpRequest);
 
         return $httpResponse;
     }

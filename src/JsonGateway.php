@@ -2,6 +2,7 @@
 
 namespace Omnipay\WorldPay;
 
+use Http\Adapter\Guzzle6\Client;
 use Omnipay\Common\AbstractGateway;
 
 /**
@@ -141,5 +142,17 @@ class JsonGateway extends AbstractGateway
     public function capture(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\WorldPay\Message\JsonCaptureRequest', $parameters);
+    }
+
+    protected function getDefaultHttpClient()
+    {
+        $guzzleClient = Client::createWithConfig([
+            'curl.options' => [
+                CURLOPT_SSLVERSION => 6
+            ]
+        ]);
+
+
+        return new \Omnipay\Common\Http\Client($guzzleClient);
     }
 }
