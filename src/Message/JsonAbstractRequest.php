@@ -99,20 +99,16 @@ abstract class JsonAbstractRequest extends AbstractRequest
      */
     public function sendRequest($data)
     {
-        $httpRequest = $this->httpClient->createRequest(
+        return $this->httpClient->request(
             $this->getHttpMethod(),
             $this->getEndpoint(),
-            [],
+            [
+                'Accept' => 'application/json',
+                'Authorization' => $this->getServiceKey(),
+                'Content-Type' => 'application/json',
+            ],
             json_encode($data)
         );
-
-        $httpRequest = $httpRequest
-            ->withHeader('Authorization', $this->getServiceKey())
-            ->withHeader('Content-type', 'application/json');
-
-        $httpResponse = $this->httpClient->sendRequest($httpRequest);
-
-        return $httpResponse;
     }
 
     /**

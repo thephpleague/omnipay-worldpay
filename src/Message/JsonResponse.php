@@ -5,6 +5,7 @@ namespace Omnipay\WorldPay\Message;
 use Guzzle\Http\Message\Response as HttpResponse;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * WorldPay Purchase Request
@@ -20,12 +21,12 @@ class JsonResponse extends AbstractResponse
      * Constructor
      *
      * @param RequestInterface $request   The initiating request
-     * @param HttpResponse     $response  HTTP response object
+     * @param ResponseInterface     $response  HTTP response object
      */
     public function __construct(RequestInterface $request, $response)
     {
         $this->response = $response;
-        parent::__construct($request, json_decode($response->getBody(), true));
+        parent::__construct($request, json_decode($response->getBody()->getContents(), true));
     }
 
     /**
