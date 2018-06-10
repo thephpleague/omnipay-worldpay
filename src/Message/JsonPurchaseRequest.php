@@ -26,9 +26,8 @@ class JsonPurchaseRequest extends JsonAbstractRequest
 
         $card = $this->getCard();
 
-        $data['billingAddress'] = array();
-
         if ($card) {
+            $data['billingAddress'] = array();
             $data['billingAddress']['address1'] = $card->getBillingAddress1();
             $data['billingAddress']['address2'] = $card->getBillingAddress2();
             $data['billingAddress']['city'] = $card->getBillingCity();
