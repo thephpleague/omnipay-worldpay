@@ -52,7 +52,16 @@ class JsonPurchaseRequest extends JsonAbstractRequest
 
             $data['shopperEmailAddress'] = $card->getEmail();
         }
-
+        
+        // if billing address is an empty array then we should remove from
+        // data since WorldPay rejects "{'billingAddress': []}"
+        if (empty($data['billingAddress'])) {
+            unset($data['billingAddress']);
+        }
+        if (empty($data['deliveryAddress'])) {
+            unset($data['deliveryAddress']);
+        }
+        
         $data['shopperIpAddress'] = $this->getClientIp();
 
         // Omnipay does not support recurring at the moment
